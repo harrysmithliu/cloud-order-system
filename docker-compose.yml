@@ -1,0 +1,18 @@
+services:
+  registry-service:
+    build: ./registry-service
+    ports: ["8761:8761"]
+
+  gateway-service:
+    build: ./gateway-service
+    ports: ["8080:8080"]
+
+  order-service:
+    build: ./order-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on: [registry-service]
+
+  user-service:
+    build: ./user-service
+    depends_on: [registry-service]
