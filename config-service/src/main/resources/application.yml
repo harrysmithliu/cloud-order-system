@@ -1,8 +1,13 @@
 server:
   port: 8888
+
 spring:
+  application:
+    name: config-service
+
   cloud:
     config:
       server:
         git:
           uri: https://github.com/harrysmithliu/config-repo.git
+          default-label: main

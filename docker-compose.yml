@@ -1,18 +1,49 @@
+version: "3.9"
+
 services:
+
   registry-service:
     build: ./registry-service
-    ports: ["8761:8761"]
+    container_name: registry-service
+    ports:
+      - "8761:8761"
+
+  config-service:
+    build: ./config-service
+    container_name: config-service
+    ports:
+      - "8888:8888"
+    depends_on:
+      - registry-service
 
   gateway-service:
     build: ./gateway-service
-    ports: ["8080:8080"]
-
-  order-service:
-    build: ./order-service
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on: [registry-service]
+    container_name: gateway-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - registry-service
 
   user-service:
     build: ./user-service
-    depends_on: [registry-service]
+    container_name: user-service
+    depends_on:
+      - registry-service
+    ports:
+      - "8082:8082"
+
+  order-service:
+    build: ./order-service
+    container_name: order-service
+    depends_on:
+      - registry-service
+    ports:
+      - "8081:8081"
+
+  product-service:
+    build: ./product-service
+    container_name: product-service
+    depends_on:
+      - registry-service
+    ports:
+      - "8083:8083"
