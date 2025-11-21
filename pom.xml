@@ -11,7 +11,7 @@
 	<groupId>com.harry</groupId>
 	<artifactId>cloud-order-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>CloudOrderSystem</name>
 	<description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
     <modules>

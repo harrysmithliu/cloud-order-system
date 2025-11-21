@@ -1,0 +1,34 @@
+# Ignore Maven build directories in parent project
+target/
+
+# Allow module-level target directories (for Docker COPY)
+!*/target/
+!*/target/*.jar
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+logs/
+*.log
+
+# Temporary
+*.tmp
+*.swp
+*.bak
+
+# Git
+.git/
+.gitignore
+
+# Docker files (always included in build context root)
+# DO NOT ignore Dockerfile used for each module → removed your original ignore rule
+# DO NOT ignore docker-compose.yml → removed your original ignore rule
+
+# OS files
+.DS_Store
+Thumbs.db

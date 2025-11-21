@@ -16,6 +16,18 @@
     <artifactId>common-lib</artifactId>
     <packaging>jar</packaging>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip> <!-- skip repackaging -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <!-- No dependencies added for the submodule at this stage; they will be added later as needed. -->
     </dependencies>
