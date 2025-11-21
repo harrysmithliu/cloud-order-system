@@ -14,6 +14,7 @@
 
     <!-- Submodule name (automatically recognized from the folder name, can be omitted) -->
     <artifactId>common-lib</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!-- No dependencies added for the submodule at this stage; they will be added later as needed. -->

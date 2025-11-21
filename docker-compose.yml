@@ -2,21 +2,19 @@ version: "3.9"
 
 services:
 
-  registry-service:
-    build: ./registry-service
-    container_name: registry-service
-    ports:
-      - "8761:8761"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-
   config-service:
     build: ./config-service
     container_name: config-service
     ports:
       - "8888:8888"
-    depends_on:
-      - registry-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  registry-service:
+    build: ./registry-service
+    container_name: registry-service
+    ports:
+      - "8761:8761"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
 
@@ -59,3 +57,10 @@ services:
       - "8083:8083"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+
+  redis:
+    image: redis:7.0
+    container_name: redis
+    ports:
+      - "6379:6379"
+    command: [ "redis-server", "--appendonly", "yes" ]

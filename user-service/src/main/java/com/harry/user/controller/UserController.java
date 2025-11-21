@@ -1,6 +1,6 @@
 package com.harry.user.controller;
 
-import com.harry.order.model.dto.UserDTO;
+import com.harry.user.model.dto.UserDTO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
