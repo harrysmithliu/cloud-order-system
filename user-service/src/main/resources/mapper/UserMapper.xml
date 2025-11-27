@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.harry.order.mapper.UserMapper">
+<mapper namespace="com.harry.user.mapper.UserMapper">
 
-    <resultMap id="UserMap" type="com.harry.order.model.po.User">
+    <resultMap id="UserMap" type="com.harry.user.model.po.User">
         <id column="id" property="id"/>
         <result column="userno" property="userNo"/>
         <result column="username" property="username"/>
