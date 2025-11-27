@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         https://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>com.harry</groupId>
         <artifactId>cloud-order-system</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <!-- Pure Java utility library - no Spring Web dependency -->
-    <artifactId>common-lib</artifactId>
+    <!-- One-stop starter for all web modules - bundles core, security and auto-configuration -->
+    <artifactId>common-web-starter</artifactId>
     <packaging>jar</packaging>
-    <description>Common utilities and domain models for all modules</description>
+    <description>Starter POM bundling all web common components - just add this one dependency</description>
 
     <dependencies>
-        <!-- No dependencies - pure Java utilities library -->
+        <!-- Web core components -->
+        <dependency>
+            <groupId>com.harry</groupId>
+            <artifactId>common-web-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Security components -->
+        <dependency>
+            <groupId>com.harry</groupId>
+            <artifactId>common-web-security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

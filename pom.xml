@@ -12,16 +12,19 @@
 	<artifactId>cloud-order-system</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CloudOrderSystem</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Spring Cloud</description>
     <packaging>pom</packaging>
     <modules>
         <module>common-lib</module>
-        <module>order-service</module>
-        <module>product-service</module>
-        <module>user-service</module>
+        <module>common-web-core</module>
+        <module>common-web-security</module>
+        <module>common-web-starter</module>
         <module>gateway-service</module>
         <module>registry-service</module>
         <module>config-service</module>
+        <module>user-service</module>
+        <module>product-service</module>
+        <module>order-service</module>
     </modules>
 	<url/>
 	<licenses>
@@ -52,19 +55,8 @@
         </dependencies>
     </dependencyManagement>
 
+    <!-- Common dependencies for all modules -->
 	<dependencies>
-
-<!-- Should not be put in parent pom -->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-actuator</artifactId>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-web</artifactId>-->
-<!--		</dependency>-->
-<!-- Should not be put in parent pom -->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -76,6 +68,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+        <!-- Unit testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -85,6 +78,7 @@
 
 	<build>
 		<plugins>
+            <!-- Compiler configuration -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -97,6 +91,7 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
+            <!-- Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
