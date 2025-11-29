@@ -28,6 +28,12 @@
             <artifactId>common-web-security</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- AOP components -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

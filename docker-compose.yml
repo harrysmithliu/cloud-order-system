@@ -2,6 +2,41 @@ version: "3.9"
 
 services:
 
+  # ------------------------
+  # MySQL
+  # ------------------------
+  mysql:
+    image: mysql:8.0
+    container_name: local-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: [
+        "--default-authentication-plugin=mysql_native_password",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci"
+      ]
+
+  # ------------------------
+  # Redis
+  # ------------------------
+  redis:
+    image: redis:7.0
+    container_name: cloud-redis
+    ports:
+      - "6379:6379"
+    command: [ "redis-server", "--appendonly", "yes" ]
+
+
+  # ------------------------
+  # Spring Cloud
+  # ------------------------
   config-service:
     build: ./config-service
     container_name: config-service
@@ -15,6 +50,8 @@ services:
     container_name: registry-service
     ports:
       - "8761:8761"
+    depends_on:
+      - config-service
     environment:
       - SPRING_PROFILES_ACTIVE=docker
 
@@ -33,18 +70,9 @@ services:
     container_name: user-service
     depends_on:
       - registry-service
+      - mysql
     ports:
       - "8082:8082"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-
-  order-service:
-    build: ./order-service
-    container_name: order-service
-    depends_on:
-      - registry-service
-    ports:
-      - "8081:8081"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
 
@@ -53,14 +81,23 @@ services:
     container_name: product-service
     depends_on:
       - registry-service
+      - mysql
     ports:
       - "8083:8083"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
 
-  redis:
-    image: redis:7.0
-    container_name: cloud-redis
+  order-service:
+    build: ./order-service
+    container_name: order-service
+    depends_on:
+      - registry-service
+      - mysql
     ports:
-      - "6379:6379"
-    command: [ "redis-server", "--appendonly", "yes" ]
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+volumes:
+  mysql_data:
+    driver: local

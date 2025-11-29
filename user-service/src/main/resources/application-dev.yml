@@ -9,9 +9,6 @@ spring:
     username: app
     password: app_pass
     driver-class-name: com.mysql.cj.jdbc.Driver
-  autoconfigure:
-    exclude:
-      - com.harry.security.WebSecurityDefaultConfig
 
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
